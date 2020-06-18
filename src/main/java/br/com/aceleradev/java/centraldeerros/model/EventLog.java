@@ -1,25 +1,27 @@
 package br.com.aceleradev.java.centraldeerros.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.annotation.sql.DataSourceDefinition;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import java.time.LocalDateTime;
 import java.util.Date;
 
+
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class EventLog {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @NotBlank
+    @Enumerated(EnumType.STRING)
     private Level level;
 
     @NotNull
@@ -35,7 +37,8 @@ public class EventLog {
     private String origin;
 
     @CreatedDate
-    private Date date;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime date;
 
     @Positive
     private Long quantity;
@@ -57,7 +60,7 @@ public class EventLog {
     }
 
     public void setLevel(Level level) {
-        this.level = level;
+        this.level=level;
     }
 
     public String getDescription() {
@@ -84,11 +87,11 @@ public class EventLog {
         this.origin = origin;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

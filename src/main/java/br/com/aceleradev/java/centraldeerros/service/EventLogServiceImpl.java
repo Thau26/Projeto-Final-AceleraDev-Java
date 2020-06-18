@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +50,7 @@ public class EventLogServiceImpl implements EventLogService {
     }
 
     @Override
-    public List<EventLog> findByDate(Date date, Pageable pageable) {
+    public List<EventLog> findByDate(LocalDateTime date, Pageable pageable) {
         return eventLogRepository.findByDate(date,pageable).getContent();
     }
 
