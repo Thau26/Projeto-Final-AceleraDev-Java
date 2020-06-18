@@ -7,11 +7,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public interface EventLogRepository extends CrudRepository<EventLog, Long> {
 
-    @Query(value = "select id,level,description,origin,date,quantity from EVENTLOG", nativeQuery = true)
+    //@Query(value = "select id,level,description,origin,date,quantity from EVENTLOG", nativeQuery = true)
     Page<EventLog> findAll(Pageable pageable);
 
     Page<EventLog> findByLevel(Level level, Pageable pageable);
@@ -20,7 +21,7 @@ public interface EventLogRepository extends CrudRepository<EventLog, Long> {
 
     Page<EventLog> findByLog(String log, Pageable pageable);
 
-    Page<EventLog> findByDate(Date date, Pageable pageable);
+    Page<EventLog> findByDate(LocalDateTime date, Pageable pageable);
 
     Page<EventLog> findByQuantity(Long qtd, Pageable pageable);
 

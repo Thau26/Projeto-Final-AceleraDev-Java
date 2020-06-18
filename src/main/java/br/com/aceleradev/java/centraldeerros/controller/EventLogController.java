@@ -49,7 +49,7 @@ public class EventLogController {
                 .orElseThrow(() -> new ResourceNotFoundException("Log de evento")), HttpStatus.OK);
     }
 
-    @GetMapping
+    /*@GetMapping
     public List<EventLog> findByLevel(@RequestParam(required = false) Level level, Pageable pageable){
         return eventLogService.findByLevel(level, pageable);
     }
@@ -57,7 +57,7 @@ public class EventLogController {
     @GetMapping
     public List<EventLog> findByDescription(@RequestParam(required = false) String description, Pageable pageable){
         return eventLogService.findByDescription(description, pageable);
-    }
+    }*/
 
 
 
