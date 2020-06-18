@@ -2,9 +2,8 @@ package br.com.aceleradev.java.centraldeerros.service;
 
 import br.com.aceleradev.java.centraldeerros.model.EventLog;
 import br.com.aceleradev.java.centraldeerros.model.Level;
-import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +20,7 @@ public interface EventLogService {
 
     List<EventLog> findByDescription(String description, Pageable pageable);
 
-    List<EventLog> findByLog(String Log, Pageable pageable);
+    List<EventLog> findByLog(String log, Pageable pageable);
 
     List<EventLog> findByDate(Date date, Pageable pageable);
 

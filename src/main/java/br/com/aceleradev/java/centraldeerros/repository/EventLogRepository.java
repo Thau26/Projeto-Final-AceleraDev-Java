@@ -18,7 +18,7 @@ public interface EventLogRepository extends CrudRepository<EventLog, Long> {
 
     Page<EventLog> findByDescription(String description, Pageable pageable);
 
-    Page<EventLog> findByLog(String Log, Pageable pageable);
+    Page<EventLog> findByLog(String log, Pageable pageable);
 
     Page<EventLog> findByDate(Date date, Pageable pageable);
 
