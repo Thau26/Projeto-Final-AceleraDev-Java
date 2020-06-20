@@ -1,12 +1,8 @@
-package br.com.aceleradev.java.centraldeerros.model;
+package br.com.aceleradev.java.centraldeerros.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.data.annotation.CreatedDate;
+import br.com.aceleradev.java.centraldeerros.model.EventLog;
+import br.com.aceleradev.java.centraldeerros.model.Level;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -21,15 +17,13 @@ import lombok.Setter;
 public class EventLogDTO {
 
     private Long id;
-
     private Level level;
-
     private String description;
-
     private String origin;
-
-    private String date;
-
+    private LocalDateTime date;
     private Long quantity;
+
+
+
 
 }

@@ -5,7 +5,6 @@ import br.com.aceleradev.java.centraldeerros.model.Level;
 import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,13 +16,13 @@ public interface EventLogService {
 
     EventLog save(EventLog event);
 
-    List<EventLog> findByLevel(Level level, Pageable pageable);
+    List<EventLog> findByLevel(String level, Pageable pageable);
 
     List<EventLog> findByDescription(String description, Pageable pageable);
 
-    List<EventLog> findByLog(String log, Pageable pageable);
+    List<EventLog> findByOrigin(String origin, Pageable pageable);
 
-    List<EventLog> findByDate(LocalDateTime date, Pageable pageable);
+    List<EventLog> findByDate(String date, Pageable pageable);
 
     List<EventLog> findByQuantity(Long qtd, Pageable pageable);
 

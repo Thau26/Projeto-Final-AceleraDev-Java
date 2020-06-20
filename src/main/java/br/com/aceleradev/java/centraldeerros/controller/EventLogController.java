@@ -1,12 +1,14 @@
 package br.com.aceleradev.java.centraldeerros.controller;
 
+import br.com.aceleradev.java.centraldeerros.dto.EventLogDTO;
 import br.com.aceleradev.java.centraldeerros.exceptions.ResourceNotFoundException;
+import br.com.aceleradev.java.centraldeerros.mapper.EventLogMapper;
 import br.com.aceleradev.java.centraldeerros.model.EventLog;
-import br.com.aceleradev.java.centraldeerros.model.Level;
 import br.com.aceleradev.java.centraldeerros.service.EventLogService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -14,15 +16,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
-@RequestMapping("/event")
+@RequestMapping("/events")
 public class EventLogController {
 
     @Autowired
     private EventLogService eventLogService;
+
+    private EventLogMapper eventLogMapper = Mappers.getMapper(EventLogMapper.class);
 
     @PostMapping
     @ApiOperation("Cria um registro de evento")
@@ -38,8 +41,8 @@ public class EventLogController {
 
     @GetMapping
     @ApiOperation("Lista os registros de eventos")
-    public Iterable<EventLog> findAll(Pageable pageable) {
-        return this.eventLogService.findAll(pageable);
+    public List<EventLogDTO> findAll(Pageable pageable) {
+        return eventLogMapper.map(eventLogService.findAll(pageable));
     }
 
     @GetMapping("/{id}")
@@ -49,15 +52,32 @@ public class EventLogController {
                 .orElseThrow(() -> new ResourceNotFoundException("Log de evento")), HttpStatus.OK);
     }
 
-    /*@GetMapping
-    public List<EventLog> findByLevel(@RequestParam(required = false) Level level, Pageable pageable){
-        return eventLogService.findByLevel(level, pageable);
+    @GetMapping("/byDescription/{description}")
+    public List<EventLogDTO> findByDescription(@PathVariable("description") String description, Pageable pageable) {
+        return eventLogMapper.map(eventLogService.findByDescription(description,pageable));
     }
 
-    @GetMapping
-    public List<EventLog> findByDescription(@RequestParam(required = false) String description, Pageable pageable){
-        return eventLogService.findByDescription(description, pageable);
-    }*/
+    @GetMapping("/byLevel/{level}")
+    public List<EventLogDTO> findByLevel(@PathVariable("level") String level, Pageable pageable) {
+        return eventLogMapper.map(eventLogService.findByLevel(level,pageable));
+    }
+
+    @GetMapping("/byOrigin/{origin}")
+    public List<EventLogDTO> findByOrigin(@PathVariable("origin") String origin, Pageable pageable) {
+        return eventLogMapper.map(eventLogService.findByOrigin(origin,pageable));
+    }
+
+    @GetMapping("/byDate/{date}")
+    public List<EventLogDTO> findByDate(@PathVariable("date") String date, Pageable pageable) {
+        return eventLogMapper.map(eventLogService.findByDate(date,pageable));
+    }
+
+    @GetMapping("/byQuantity/{quantity}")
+    public List<EventLogDTO> findByQuantity(@PathVariable("quantity") Long quantity, Pageable pageable) {
+        return eventLogMapper.map(eventLogService.findByQuantity(quantity,pageable));
+    }
+
+
 
 
 
