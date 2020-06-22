@@ -16,7 +16,7 @@ public interface EventLogMapper {
             @Mapping(source = "description", target = "description"),
             @Mapping(source = "origin", target = "origin"),
             @Mapping(source = "level", target = "level"),
-            @Mapping(source = "date", target = "date", dateFormat = "yyyy-MM-dd HH:mm"),
+            @Mapping(source = "createAt", target = "createAt", dateFormat = "yyyy-MM-dd HH:mm"),
             @Mapping(source = "quantity", target = "quantity")
     })
 

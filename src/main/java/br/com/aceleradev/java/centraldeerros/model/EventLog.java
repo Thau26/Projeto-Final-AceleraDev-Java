@@ -2,6 +2,7 @@ package br.com.aceleradev.java.centraldeerros.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -41,8 +42,8 @@ public class EventLog {
     private String log;
 
     @CreatedDate
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime date;
+    @CreationTimestamp
+    private LocalDateTime createAt;
 
     @Positive
     private Long quantity;

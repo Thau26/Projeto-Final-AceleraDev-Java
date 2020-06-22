@@ -3,13 +3,21 @@ package br.com.aceleradev.java.centraldeerros.model;
 public enum Level {
     ERROR("error"), WARNING("warning"), INFO("info");
 
-    private String descricao;
+    private String level;
 
-    Level(String descricao) {
-        this.descricao = descricao;
+    Level(String level) {
+        this.level = level;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getLevel() {
+        return level;
+    }
+
+    public static Level find(String value) {
+        for (Level level : Level.values()) {
+            if(value.equalsIgnoreCase((level.level)))
+                return level;
+        }
+        return null;
     }
 }

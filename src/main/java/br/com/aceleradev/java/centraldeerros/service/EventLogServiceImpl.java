@@ -3,14 +3,18 @@ package br.com.aceleradev.java.centraldeerros.service;
 import br.com.aceleradev.java.centraldeerros.model.EventLog;
 import br.com.aceleradev.java.centraldeerros.model.Level;
 import br.com.aceleradev.java.centraldeerros.repository.EventLogRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
 
-import java.time.LocalDateTime;
+
+
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class EventLogServiceImpl implements EventLogService {
@@ -18,10 +22,10 @@ public class EventLogServiceImpl implements EventLogService {
     @Autowired
     private EventLogRepository eventLogRepository;
 
-    @Override
-    public List<EventLog> findAll(Pageable pageable) {
 
-        return this.eventLogRepository.findAll(pageable).getContent();
+    @Override
+    public List<EventLog> findAll(Specification<EventLog> specification, Pageable pageable) {
+        return eventLogRepository.findAll(specification, pageable).getContent();
     }
 
     @Override
@@ -34,30 +38,7 @@ public class EventLogServiceImpl implements EventLogService {
         return eventLogRepository.save(event);
     }
 
-    @Override
-    public List<EventLog> findByLevel(String level, Pageable pageable) {
-        return eventLogRepository.findByLevel(level, pageable).getContent();
-    }
 
-    @Override
-    public List<EventLog> findByDescription(String description, Pageable pageable) {
-        return eventLogRepository.findByDescriptionContaining(description, pageable).getContent();
-    }
-
-    @Override
-    public List<EventLog> findByOrigin(String origin, Pageable pageable) {
-        return eventLogRepository.findByOrigin(origin,pageable).getContent();
-    }
-
-    @Override
-    public List<EventLog> findByDate(String date, Pageable pageable) {
-        return eventLogRepository.findByDate(date,pageable).getContent();
-    }
-
-    @Override
-    public List<EventLog> findByQuantity(Long qtd, Pageable pageable) {
-        return eventLogRepository.findByQuantity(qtd, pageable).getContent();
-    }
 
     @Override
     public void deleteById(Long id) {

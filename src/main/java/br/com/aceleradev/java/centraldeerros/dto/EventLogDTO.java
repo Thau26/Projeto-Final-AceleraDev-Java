@@ -20,7 +20,7 @@ public class EventLogDTO {
     private Level level;
     private String description;
     private String origin;
-    private LocalDateTime date;
+    private LocalDateTime createAt;
     private Long quantity;
 
 
