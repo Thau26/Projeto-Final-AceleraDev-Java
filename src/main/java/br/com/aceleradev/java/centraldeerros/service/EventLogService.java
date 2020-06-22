@@ -26,6 +26,10 @@ public interface EventLogService {
 
     List<EventLog> findByQuantity(Long qtd, Pageable pageable);
 
+    void deleteById(Long id);
+
+
+
 
 
 }

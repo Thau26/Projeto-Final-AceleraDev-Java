@@ -58,4 +58,9 @@ public class EventLogServiceImpl implements EventLogService {
     public List<EventLog> findByQuantity(Long qtd, Pageable pageable) {
         return eventLogRepository.findByQuantity(qtd, pageable).getContent();
     }
+
+    @Override
+    public void deleteById(Long id) {
+        eventLogRepository.deleteById(id);
+    }
 }
