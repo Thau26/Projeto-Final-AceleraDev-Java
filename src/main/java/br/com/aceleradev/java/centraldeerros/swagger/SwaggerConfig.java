@@ -29,7 +29,7 @@ public class SwaggerConfig {
 
         return new ApiInfoBuilder()
                 .title("Central de Erros API")
-                .description("Aplicação Spring Boot do projeto de conclusão do aceleraDev Java")
+                .description("Aplicação Spring Boot do projeto final do aceleraDev Java")
                 .version("1.0.0")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
