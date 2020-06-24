@@ -27,3 +27,8 @@ Utilizar a tecnologia base da aceleração para o desenvolvimento (Exemplo: Java
 - Deve suportar Ordenação por diferentes tipos de atributos
 - A consulta de listagem não deve retornar os LOGs dos Eventos
 - Deve permitir a busca de um evento por um ID, dessa maneira exibindo o LOG desse evento em específico
+
+Apresentação no [Youtube] (https://youtu.be/e4ggTxvtVMA)
+
+[Swagger] (https://central-de-erros-aceleradev-ja.herokuapp.com/swagger-ui.html)
+
