@@ -47,10 +47,15 @@ public class EventLogController {
         return new ResponseEntity<EventLog>(this.eventLogService.save(eventLog), HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("/{id}")
     @ApiOperation("Deleta um evento")
-    public void delete(@PathVariable("id") Long id) {
-        this.eventLogService.deleteById(id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteEvent(@PathVariable Long id) {
+        try {
+            this.eventLogService.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping(produces = "application/json")
